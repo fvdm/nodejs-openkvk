@@ -5,7 +5,7 @@
     "url":                "http://frankl.in"
   },
   "name":                 "openkvk",
-  "description":          "Unofficial module for openkvk.org",
+  "description":          "Unofficial module for openkvk.nl",
   "version":              "1.0.0",
   "repository": {
     "type":               "git",
