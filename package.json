@@ -21,6 +21,9 @@
   "engines": {
     "node":               "*"
   },
+  "scripts": {
+	"test":               "node test.js"  
+  },
   "keywords":             ["openkvk", "kvk", "handelsregister", "nl", "api"],
   "license": {
     "type":               "Public Domain",
