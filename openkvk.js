@@ -51,7 +51,7 @@ module.exports = function( term, callback ) {
         doCallback( null, data )
       }
       catch(e) {
-        doCallback( nee Error('not json')
+        doCallback( new Error('not json')
       }
     })
   })
