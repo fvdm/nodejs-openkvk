@@ -84,7 +84,7 @@ queue.push( function() {
       ['item kvk', data && data[0] && typeof data[0].kvk === 'string']
     ])
   })
-}
+})
 
 
 // Start the tests
