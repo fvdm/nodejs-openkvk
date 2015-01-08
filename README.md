@@ -1,7 +1,9 @@
-nodejs-openkvk
-==============
+openkvk
+=======
 
-Zoek in de [openkvk.nl](http://openkvk.nl/) database.
+Onofficiële node.js module voor [OpenKvK](http://openkvk.nl/).
+
+[![Build Status](https://travis-ci.org/fvdm/nodejs-openkvk.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-openkvk)
 
 
 Installatie
@@ -9,7 +11,7 @@ Installatie
 
 Stable: `npm install openkvk`
 
-Source: `npm install git+https://github.com/fvdm/nodejs-openkvk`
+Source: `npm install fvdm/nodejs-openkvk`
 
 
 Gebruik
@@ -23,14 +25,10 @@ openkvk( 'ahold', console.log )
 
 // zoek op KvK nummer
 openkvk( 12345, console.log )
-
-// Uitgebreid zoeken met SQL query
-openkvk( "SELECT * FROM kvk WHERE bedrijfsnaam LIKE 'Ahold%' LIMIT 10", console.log )
 ```
 
 
 ### Basis gegevens
-De eerste twee voorbeelden geven een eenvoudig object terug:
 
 ```js
 [ { rechtspersoon: 'Ahold Kunst Stichting',
@@ -45,32 +43,8 @@ De eerste twee voorbeelden geven een eenvoudig object terug:
 ```
 
 
-### SQL query
-
-SQL-queries geven een groter object. Zie de [officiële documentatie](http://openkvk.nl/api.html) voor uitleg.
-
-```js
-[ { kvk: '321473830000',
-    bedrijfsnaam: 'Ahold holding bol.com B.V.',
-    kvks: '32147383',
-    sub: '0',
-    adres: 'Provincialeweg 11',
-    postcode: '1506MA',
-    plaats: 'Zaandam',
-    type: 'Hoofdvestiging',
-    status: null,
-    website: null,
-    vestiging: '14329875',
-    rechtsvorm: 'Besloten Vennootschap',
-    lat_rad: null,
-    lon_rad: null,
-    anbi: null,
-    lastupdate: '2013-08-14' } ]
-```
-
-
-Unlicense (public domain)
------------------------
+Unlicense
+---------
 
 This is free and unencumbered software released into the public domain.
 
@@ -97,4 +71,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>
 
-![p](https://frankl.in/piwik/piwik.php?idsite=9&rec=1)
+
+Author
+------
+
+Franklin van de Meent
+| [Website](https://frankl.in)
+| [Github](https://github.com/fvdm)

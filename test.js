@@ -6,43 +6,87 @@ Feedback:     https://github.com/fvdm/nodejs-openkvk/issues
 License:      Public Domain / Unlicense (see LICENSE file)
 */
 
+var util = require('util')
+
+// Setup
 var openkvk = require('./')
+
+
+// handle exits
 var errors = 0
-
 process.on( 'exit', function() {
-	if( errors === 0 ) {
-		console.log('\nDONE, no errors.\n')
-		process.exit(0)
-	} else {
-		console.log('\nFAIL, '+ errors +' error(s) occured!\n')
-		process.exit(1)
-	}
+  if( errors == 0 ) {
+    console.log('\n\033[1mDONE, no errors.\033[0m\n')
+    process.exit(0)
+  } else {
+    console.log('\n\033[1mFAIL, '+ errors +' error'+ (errors > 1 ? 's' : '') +' occurred!\033[0m\n')
+    process.exit(1)
+  }
 })
 
-// query
-console.log( 'Query on api.openkvk.nl:' )
-console.log( '  SELECT * FROM kvk WHERE bedrijfsnaam LIKE \'Ahold%\' LIMIT 1' )
-
-openkvk( 'SELECT * FROM kvk WHERE bedrijfsnaam LIKE \'Ahold%\' LIMIT 1', function( err, res ) {
-	if( err ) {
-		console.log( err, err.stack )
-		errors++
-	} else if( res[0].bedrijfsnaam.substring(0,5) !== 'Ahold' ) {
-		console.log( 'res[0].bedrijfsnaam.substring(0,5) !== \'Ahold\'' )
-		errors++
-	}
+// prevent errors from killing the process
+process.on( 'uncaughtException', function( err ) {
+  console.log()
+  console.error( err.stack )
+  console.trace()
+  console.log()
+  errors++
 })
 
-// simple
-console.log( 'Lookup on officieel.openkvk.nl:' )
-console.log( '  ahold' )
+// Queue to prevent flooding
+var queue = []
+var next = 0
 
-openkvk( 'ahold', function( err, res ) {
-	if( err ) {
-		console.log( err, err.stack )
-		errors++
-	} else if( !~res[0].rechtspersoon.indexOf('Ahold') ) {
-		console.log( '!~res[0].rechtspersoon.indexOf(\'Ahold\')' )
-		errors++
-	}
+function doNext() {
+  next++
+  if( queue[next] ) {
+    queue[next]()
+  }
+}
+
+// doTest( passErr, 'methods', [
+//   ['feeds', typeof feeds === 'object']
+// ])
+function doTest( err, label, tests ) {
+  if( err instanceof Error ) {
+    console.error( label +': \033[1m\033[31mERROR\033[0m\n' )
+    console.error( util.inspect(err, false, 10, true) )
+    console.log()
+    console.error( err.stack )
+    console.log()
+    errors++
+  } else {
+    var testErrors = []
+    tests.forEach( function( test ) {
+      if( test[1] !== true ) {
+        testErrors.push(test[0])
+        errors++
+      }
+    })
+
+    if( testErrors.length == 0 ) {
+      console.log( label +': \033[1m\033[32mok\033[0m' )
+    } else {
+      console.error( label +': \033[1m\033[31mfailed\033[0m ('+ testErrors.join(', ') +')' )
+    }
+  }
+
+  doNext()
+}
+
+
+queue.push( function() {
+  openkvk( 'ahold kunst', function( err, data ) {
+    doTest( err, 'search', [
+      ['data type', data && data instanceof Array],
+      ['data size', data && data.length >= 1],
+      ['item type', data && data[0] && data[0] instanceof Object],
+      ['item kvk', data && data[0] && typeof data[0].kvk === 'string']
+    ])
+  })
 })
+
+
+// Start the tests
+console.log('Running tests...\n')
+queue[0]()
