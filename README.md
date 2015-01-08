@@ -3,6 +3,8 @@ openkvk
 
 Onofficiële node.js module voor [OpenKvK](http://openkvk.nl/).
 
+[![Build Status](https://travis-ci.org/fvdm/nodejs-openkvk.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-openkvk)
+
 
 Installatie
 -----------
