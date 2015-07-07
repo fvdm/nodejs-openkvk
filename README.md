@@ -6,25 +6,17 @@ Onofficiële node.js module voor [OpenKvK](http://openkvk.nl/).
 [![Build Status](https://travis-ci.org/fvdm/nodejs-openkvk.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-openkvk)
 
 
-Installatie
------------
-
-Stable: `npm install openkvk`
-
-Source: `npm install fvdm/nodejs-openkvk`
-
-
-Gebruik
--------
+Voorbeeld
+---------
 
 ```js
-var openkvk = require('openkvk')
+var openkvk = require ('openkvk');
 
 // basis gegevens
-openkvk( 'ahold', console.log )
+openkvk ('ahold', console.log);
 
 // zoek op KvK nummer
-openkvk( 12345, console.log )
+openkvk (12345, console.log);
 ```
 
 
@@ -41,6 +33,14 @@ openkvk( 12345, console.log )
     kvks: '35030138',
     woonplaats: 'Zaandam' } ]
 ```
+
+
+Installatie
+-----------
+
+Normaal: `npm install openkvk`
+
+Development: `npm install fvdm/nodejs-openkvk#develop`
 
 
 Unlicense
