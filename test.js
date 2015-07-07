@@ -86,6 +86,18 @@ queue.push (function () {
 });
 
 
+queue.push (function () {
+  openkvk ('35030138', function (err, data) {
+    doTest (err, 'search by kvks', [
+      ['data type', data && data instanceof Array],
+      ['data size', data && data.length >= 1],
+      ['item type', data && data [0] && data [0] instanceof Object],
+      ['item kvk', data && data [0] && typeof data [0].kvk === 'string']
+    ]);
+  })
+});
+
+
 // Start the tests
 console.log ('Running tests...\n');
 queue [0] ();
