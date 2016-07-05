@@ -1,7 +1,7 @@
 #!/bin/bash
 result=0
 
-eslint openkvk.js test.js || result=1
+eslint *.js || result=1
 istanbul cover test.js || result=1
 
 if [ "$TRAVIS" == "true" ]; then
