@@ -15,7 +15,7 @@ var openkvk = require ('./');
 function testArrayObject (err, data) {
   var item = data && data instanceof Array && data [0];
 
-  test (err)
+  dotest.test (err)
     .isArray ('fail', 'data', data)
     .isNotEmpty ('fail', 'data', data)
     .isObject ('fail', 'data[0]', item)
@@ -24,12 +24,12 @@ function testArrayObject (err, data) {
 }
 
 
-dotest.add ('search by keywords', function (test) {
+dotest.add ('search by keywords', function () {
   openkvk ('ahold kunst', testArrayObject);
 });
 
 
-dotest.add ('search by kvks', function (test) {
+dotest.add ('search by kvks', function () {
   openkvk ('35030138', testArrayObject);
 });
 
