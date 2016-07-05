@@ -8,61 +8,67 @@ License:      Unlicense (Public Domain) - see LICENSE file
               (https://github.com/fvdm/nodejs-openkvk/raw/master/LICENSE)
 */
 
-var http = require ('http');
+var httpreq = require ('httpreq');
 
-module.exports = function (term, callback) {
-  // prevent multiple callbacks
-  var complete = false;
-  function doCallback (err, res) {
-    if (!complete) {
-      complete = true;
-      callback (err, res);
-    }
+
+/**
+ * Process httpreq response
+ *
+ * @callback callback
+ * @param err {Error, null} - Client error
+ * @param res {object} - Client response details
+ * @param callback {function) - `function (err, data) {}`
+ * @returns {void}
+ */
+
+function httpResponse (err, res, callback) {
+  var data = res && res.body || null;
+  var error = null;
+
+  if (err) {
+    callback (err);
+    return;
   }
 
-  // build request
+  try {
+    data = JSON.parse (data);
+  } catch (e) {
+    error = new Error ('not json');
+    error.error = e;
+    error.body = data;
+    error.statusCode = res.statusCode;
+
+    callback (error);
+    return;
+  }
+
+  callback (null, data);
+}
+
+
+/**
+ * Send API request
+ *
+ * @callback callback
+ * @param term {string} - Term to lookup
+ * @param callback {function) - `function (err, data) {}`
+ * @returns apiRequest {function}
+ */
+
+function apiRequest (term, callback) {
   var options = {
-    host: 'officieel.openkvk.nl',
-    path: '/json/'+ encodeURIComponent (term),
+    method: 'GET',
+    url: 'http://officieel.openkvk.nl/json/' + encodeURIComponent (term),
     header: {
       'User-Agent': 'openkvk.js (https://www.npmjs.com/package/openkvk'
     }
   };
 
-  var request = http.request (options);
-
-  request.on ('response', function (response) {
-    var data = [];
-    var size = 0;
-
-    response.on ('data', function (ch) {
-      data.push (ch);
-      size += ch.length;
-    });
-
-    response.on ('close', function () {
-      doCallback (new Error ('request dropped') );
-    });
-
-    response.on ('end', function() {
-      data = new Buffer.concat (data, size) .toString ('utf8') .trim ();
-      try {
-        data = JSON.parse (data);
-        doCallback (null, data);
-      }
-      catch(e) {
-        doCallback (new Error ('not json') );
-      }
-    });
+  httpreq.doRequest (options, function (err, res) {
+    httpResponse (err, res, callback);
   });
 
-  // request error
-  request.on ('error', function (error) {
-    var err = new Error ('request failed');
-    err.error = error;
-    doCallback (error);
-  });
+  return apiRequest;
+}
 
-  // do it
-  request.end ();
-};
+module.exports = apiRequest;
