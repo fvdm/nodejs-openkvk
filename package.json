@@ -28,7 +28,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "node test.sh"  
+    "test": "bash test.sh"  
   },
   "keywords": [
     "api",
