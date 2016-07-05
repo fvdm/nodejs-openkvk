@@ -59,6 +59,7 @@ function apiRequest (term, callback) {
   var options = {
     method: 'GET',
     url: 'http://officieel.openkvk.nl/json/' + encodeURIComponent (term),
+    timeout: 5000,
     headers: {
       'User-Agent': 'openkvk.js (https://www.npmjs.com/package/openkvk'
     }
