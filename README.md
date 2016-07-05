@@ -3,7 +3,10 @@ openkvk
 
 Onofficiële node.js module voor [OpenKvK](http://openkvk.nl/).
 
+[![npm](https://img.shields.io/npm/v/openkvk.svg?maxAge=3600)](https://github.com/fvdm/nodejs-openkvk/blob/master/CHANGELOG.md)
 [![Build Status](https://travis-ci.org/fvdm/nodejs-openkvk.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-openkvk)
+[![Dependency Status](https://gemnasium.com/badges/github.com/fvdm/nodejs-openkvk.svg)](https://gemnasium.com/github.com/fvdm/nodejs-openkvk#runtime-dependencies)
+[![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-openkvk/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-openkvk?branch=master)
 
 
 Voorbeeld
