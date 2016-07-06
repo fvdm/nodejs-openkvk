@@ -8,42 +8,14 @@ License:      Unlicense (Public Domain) - see LICENSE file
               (https://github.com/fvdm/nodejs-openkvk/raw/master/LICENSE)
 */
 
-var httpreq = require ('httpreq');
+var ovio = require ('overheid.io');
+var kvk;
 
-
-/**
- * Process httpreq response
- *
- * @callback callback
- * @param err {Error, null} - Client error
- * @param res {object} - Client response details
- * @param callback {function) - `function (err, data) {}`
- * @returns {void}
- */
-
-function httpResponse (err, res, callback) {
-  var data = res && res.body || null;
-  var error = null;
-
-  if (err) {
-    callback (err);
-    return;
-  }
-
-  try {
-    data = JSON.parse (data);
-  } catch (e) {
-    error = new Error ('not json');
-    error.error = e;
-    error.body = data;
-    error.statusCode = res.statusCode;
-
-    callback (error);
-    return;
-  }
-
-  callback (null, data);
-}
+var config = {
+  apikey: null,
+  dataset: 'kvk',
+  timeout: 5000
+};
 
 
 /**
@@ -55,21 +27,37 @@ function httpResponse (err, res, callback) {
  * @returns apiRequest {function}
  */
 
-function apiRequest (term, callback) {
+function apiRequest (term, params, callback) {
   var options = {
-    method: 'GET',
-    url: 'http://officieel.openkvk.nl/json/' + encodeURIComponent (term),
-    timeout: 5000,
-    headers: {
-      'User-Agent': 'openkvk.js (https://www.npmjs.com/package/openkvk'
-    }
+    path: encodeURIcomponent (term)
   };
 
-  httpreq.doRequest (options, function (err, res) {
-    httpResponse (err, res, callback);
-  });
+  if (typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
 
+  options.params = params;
+  kvk (options, callback);
   return apiRequest;
 }
 
-module.exports = apiRequest;
+
+/**
+ * Module setup and configuration
+ *
+ * @param set {object} - Config params
+ * @param set.apikey {string) - Overheid.io API key
+ * @param [set.timeout = 5000] {number} - Request timeout in ms
+ * @returns apiRequest {function}
+ */
+
+function setup (set) {
+  config.apikey = set.apikey || null;
+  config.timeout = set.timeout || config.timeout;
+
+  kvk = ovio (config);
+  return apiRequest;
+}
+
+module.exports = setup;
