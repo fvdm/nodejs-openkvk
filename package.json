@@ -16,7 +16,7 @@
   },
   "main": "openkvk.js",
   "dependencies": {
-    "httpreq": "^0.4.22"
+    "overheid.io": "^0.3.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.9",
