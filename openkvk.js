@@ -30,15 +30,15 @@ var config = {
 function apiRequest (path, params, callback) {
   var options = {
     path,
+    params,
     callback
   };
 
   if (typeof params === 'function') {
-    callback = params;
-    params = null;
+    options.callback = params;
+    options.params = null;
   }
 
-  options.params = params;
   kvk (options, callback);
   return apiRequest;
 }
