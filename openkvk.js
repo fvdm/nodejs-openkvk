@@ -29,7 +29,7 @@ var config = {
 
 function apiRequest (term, params, callback) {
   var options = {
-    path: encodeURIcomponent (term)
+    path: term
   };
 
   if (typeof params === 'function') {
