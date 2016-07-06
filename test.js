@@ -9,7 +9,14 @@ License:        Unlicense (Public Domain) - see LICENSE file
 
 // Setup
 var dotest = require ('dotest');
-var openkvk = require ('./');
+var app = require ('./');
+
+var config = {
+  apikey: process.env.OPENKVK_APIKEY || null,
+  timeout: process.env.OPENKVK_TIMEOUT || null
+};
+
+var openkvk = app (config):
 
 
 function testArrayObject (err, data) {
@@ -22,6 +29,14 @@ function testArrayObject (err, data) {
     .isString ('fail', 'data[0].kvk', item && item.kvk)
     .done ();
 }
+
+
+dotest.add ('Module', function (test) {
+  test ()
+    .isFunction ('fail', 'exports', app)
+    .isFunction ('fail', 'interface', openkvk)
+    .done ();
+});
 
 
 dotest.add ('search by keywords', function () {
