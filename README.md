@@ -1,7 +1,7 @@
 openkvk
 =======
 
-Onofficiële node.js module voor [OpenKvK](http://openkvk.nl/).
+Node.js package for OpenKvK (unofficial)
 
 [![npm](https://img.shields.io/npm/v/openkvk.svg?maxAge=3600)](https://github.com/fvdm/nodejs-openkvk/blob/master/CHANGELOG.md)
 [![Build Status](https://travis-ci.org/fvdm/nodejs-openkvk.svg?branch=master)](https://travis-ci.org/fvdm/nodejs-openkvk)
@@ -9,21 +9,29 @@ Onofficiële node.js module voor [OpenKvK](http://openkvk.nl/).
 [![Coverage Status](https://coveralls.io/repos/github/fvdm/nodejs-openkvk/badge.svg?branch=master)](https://coveralls.io/github/fvdm/nodejs-openkvk?branch=master)
 
 
-Voorbeeld
----------
+* [Node.js](https://nodejs.org)
+* [OpenKvK](https://openkvk.nl) (Dutch)
+* [Overheid.io](https://overheid.io) (Dutch)
+* [API documentation](https://overheid.io/documentatie/kvk) (Dutch)
+
+
+Example
+-------
 
 ```js
-var openkvk = require ('openkvk');
+var openkvk = require ('openkvk') ({
+  apikey: 'abc123'
+});
 
-// basis gegevens
+// get basics
 openkvk ('ahold', console.log);
 
-// zoek op KvK nummer
+// find by KvK ID
 openkvk (12345, console.log);
 ```
 
 
-### Basis gegevens
+#### Output
 
 ```js
 [ { rechtspersoon: 'Ahold Kunst Stichting',
@@ -38,12 +46,32 @@ openkvk (12345, console.log);
 ```
 
 
-Installatie
------------
+Installation
+------------
 
-Normaal: `npm install openkvk`
+`npm install openkvk --save`
 
-Development: `npm install fvdm/nodejs-openkvk#develop`
+
+Configuration
+-------------
+
+The module setup function takes an object with these parameters:
+
+
+param   | type   | required | default | description
+:-------|:-------|:---------|:--------|:-----------
+apikey  | string | yes      |         | Your [Overheid.io](https://overheid.io) API key
+timeout | number | no       | 5000    | Request wait timeout in ms
+
+
+#### Example
+
+```js
+var kvk = require ('openkvk') ({
+  apikey: 'abc123',
+  timeout: 8000
+});
+```
 
 
 Unlicense
@@ -78,6 +106,4 @@ For more information, please refer to <http://unlicense.org/>
 Author
 ------
 
-Franklin van de Meent
-| [Website](https://frankl.in)
-| [Github](https://github.com/fvdm)
+[Franklin van de Meent](https://frankl.in)
