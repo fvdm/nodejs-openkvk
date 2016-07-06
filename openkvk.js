@@ -22,14 +22,15 @@ var config = {
  * Send API request
  *
  * @callback callback
- * @param term {string} - Term to lookup
+ * @param path {string} - Term, id or 'id/subId'
  * @param callback {function) - `function (err, data) {}`
  * @returns apiRequest {function}
  */
 
-function apiRequest (term, params, callback) {
+function apiRequest (path, params, callback) {
   var options = {
-    path: term
+    path,
+    callback
   };
 
   if (typeof params === 'function') {
