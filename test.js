@@ -16,7 +16,7 @@ var config = {
   timeout: process.env.OPENKVK_TIMEOUT || null
 };
 
-var openkvk = app (config):
+var openkvk = app (config);
 
 
 function testArrayObject (err, data) {
