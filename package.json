@@ -19,7 +19,7 @@
     "overheid.io": "^0.3.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.9",
+    "coveralls": "^2.11.10",
     "dotest": "^1.12.4",
     "eslint": "^3.0.1",
     "istanbul": "^0.4.4"
@@ -28,7 +28,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "bash test.sh"  
+    "test": "bash test.sh"
   },
   "keywords": [
     "api",
