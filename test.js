@@ -48,7 +48,7 @@ dotest.add ('search by keyword', function () {
 });
 
 
-dotest.add ('search by kvks', function () {
+dotest.add ('search by dossier', function () {
   openkvk ('35030138', testArrayObject);
 });
 
