@@ -5,7 +5,7 @@
     "url": "https://frankl.in"
   },
   "name": "openkvk",
-  "description": "Unofficial module for openkvk.nl",
+  "description": "Search KvK Handelsregister with OpenKvK.nl (unofficial)",
   "version": "2.0.0",
   "repository": {
     "type": "git",
