@@ -53,5 +53,17 @@ dotest.add ('search by dossier', function () {
 });
 
 
+dotest.add ('search by subdossier', function (test) {
+  openkvk ('58488340/0000', function (err, data) {
+    test (err)
+      .isObject ('fail', 'data', data)
+      .isNotEmpty ('fail', 'data', data)
+      .isExactly ('warn', 'data.dossiernummer', data && data.dossiernummer, '58488340')
+      .isExactly ('warn', 'data.subdossiernummer', data && data.subdossiernummer, '0000')
+      .done ();
+  });
+});
+
+
 // Start the tests
 dotest.run ();
