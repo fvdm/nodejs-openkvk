@@ -39,8 +39,8 @@ dotest.add ('Module', function (test) {
 });
 
 
-dotest.add ('search by keywords', function () {
-  openkvk ('ahold kunst', testArrayObject);
+dotest.add ('search by keyword', function () {
+  openkvk ({ query: 'ahold' }, testArrayObject);
 });
 
 
