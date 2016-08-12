@@ -34,12 +34,16 @@ function apiRequest (path, params, callback) {
     callback
   };
 
-  if (typeof params === 'function') {
+  if (path instanceof Object) {
+    options.path = '';
+    options.params = path;
     options.callback = params;
+  } else if (typeof params === 'function') {
     options.params = null;
+    options.callback = params;
   }
 
-  kvk (options, callback);
+  kvk (options);
   return apiRequest;
 }
 
