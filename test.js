@@ -20,13 +20,17 @@ var openkvk = app (config);
 
 
 function testArrayObject (err, data) {
-  var item = data && data instanceof Array && data [0];
+  var rp = data && data._embedded && data._embedded.rechtspersoon;
+  var item = rp && rp instanceof Array && rp [0];
 
   dotest.test (err)
-    .isArray ('fail', 'data', data)
-    .isNotEmpty ('fail', 'data', data)
-    .isObject ('fail', 'data[0]', item)
-    .isString ('fail', 'data[0].kvk', item && item.kvk)
+    .isObject ('fail', 'data', data)
+    .isCondition ('fail', 'data.totalItemCount', data && data.totalItemCount, '>', 0)
+    .isObject ('fail', 'data._embedded', data && data._embedded)
+    .isArray ('fail', 'data._embedded.rechtspersoon', rp)
+    .isNotEmpty ('fail', 'data._embbedded.rechtspersoon', rp)
+    .isObject ('fail', 'data._embedded.rechtspersoon[0]', item)
+    .isString ('fail', 'data._embedded.rechtspersoon[0].dossiernummer', item && item.dossiernummer)
     .done ();
 }
 
