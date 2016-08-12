@@ -35,7 +35,9 @@
     "handelsregister",
     "kvk",
     "nl",
-    "openkvk"
+    "openkvk",
+    "overheid",
+    "overheid.io"
   ],
   "license": "Unlicense"
 }
