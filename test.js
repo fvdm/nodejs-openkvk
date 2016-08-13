@@ -44,12 +44,17 @@ dotest.add ('Module', function (test) {
 
 
 dotest.add ('search by keyword', function () {
-  openkvk ({ query: 'ahold' }, testArrayObject);
+  var params = {
+    query: 'ahold',
+    size: 2
+  };
+
+  openkvk (params, testArrayObject);
 });
 
 
 dotest.add ('search by dossier', function () {
-  openkvk ('35030138', testArrayObject);
+  openkvk ('58488340', testArrayObject);
 });
 
 
