@@ -1,32 +1,43 @@
 {
   "author": {
-    "name":               "Franklin van de Meent",
-    "email":              "fr@nkl.in",
-    "url":                "https://frankl.in"
+    "name": "Franklin van de Meent",
+    "email": "fr@nkl.in",
+    "url": "https://frankl.in"
   },
-  "name":                 "openkvk",
-  "description":          "Unofficial module for openkvk.nl",
-  "version":              "2.0.0",
+  "name": "openkvk",
+  "description": "Search KvK Handelsregister with OpenKvK.nl (unofficial)",
+  "version": "2.0.1",
   "repository": {
-    "type":               "git",
-    "url":                "git://github.com/fvdm/nodejs-openkvk.git"
+    "type": "git",
+    "url": "git://github.com/fvdm/nodejs-openkvk.git"
   },
   "bugs": {
-    "url":                "https://github.com/fvdm/nodejs-openkvk/issues"
+    "url": "https://github.com/fvdm/nodejs-openkvk/issues"
   },
-  "main":                 "openkvk.js",
-  "dependencies":         {},
-  "devDependencies":      {},
-  "optionalDependencies": {},
+  "main": "openkvk.js",
+  "dependencies": {
+    "overheid.io": "^0.3.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.12",
+    "dotest": "^1.12.4",
+    "eslint": "^3.3.0",
+    "istanbul": "^0.4.4"
+  },
   "engines": {
-    "node":               ">=0.8.0"
+    "node": ">=4.0.0"
   },
   "scripts": {
-    "test":               "node test.js"  
+    "test": "bash test.sh"
   },
-  "keywords":             ["openkvk", "kvk", "handelsregister", "nl", "api"],
-  "license": {
-    "type":               "Public Domain",
-    "url":                "https://github.com/fvdm/nodejs-openkvk/raw/master/LICENSE"
-  }
+  "keywords": [
+    "api",
+    "handelsregister",
+    "kvk",
+    "nl",
+    "openkvk",
+    "overheid",
+    "overheid.io"
+  ],
+  "license": "Unlicense"
 }
