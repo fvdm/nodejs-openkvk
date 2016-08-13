@@ -23,26 +23,14 @@ var openkvk = require ('openkvk') ({
   apikey: 'abc123'
 });
 
-// get basics
-openkvk ('ahold', console.log);
+// Search on keyword
+openkvk ({ query: 'ahold' }, console.log);
 
-// find by KvK ID
-openkvk (12345, console.log);
-```
+// Find by dossier ID - Output like search
+openkvk ('12345', console.log);
 
-
-#### Output
-
-```js
-[ { rechtspersoon: 'Ahold Kunst Stichting',
-    vestigingsnummer: '000014453061',
-    adres: 'Provincialeweg 11',
-    kvk: '350301380000',
-    handelsnamen: { bestaand: [Object] },
-    postcode: '1506MA',
-    type: 'Hoofdvestiging',
-    kvks: '35030138',
-    woonplaats: 'Zaandam' } ]
+// Find by subdossier ID - Output only details
+openkvk ('58488340/0000', console.log);
 ```
 
 
