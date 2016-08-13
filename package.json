@@ -6,7 +6,7 @@
   },
   "name": "openkvk",
   "description": "Search KvK Handelsregister with OpenKvK.nl (unofficial)",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/fvdm/nodejs-openkvk.git"
@@ -28,7 +28,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "bash test.sh"  
+    "test": "bash test.sh"
   },
   "keywords": [
     "api",
