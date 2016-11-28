@@ -16,7 +16,7 @@
   },
   "main": "openkvk.js",
   "dependencies": {
-    "overheid.io": "^0.3.0"
+    "overheid.io": "^1.0.0"
   },
   "devDependencies": {
     "dotest": "^1.13.0"
