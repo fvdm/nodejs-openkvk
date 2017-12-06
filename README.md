@@ -1,6 +1,8 @@
 openkvk
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fvdm/nodejs-openkvk.svg)](https://greenkeeper.io/)
+
 Node.js package for OpenKvK (unofficial)
 
 [![npm](https://img.shields.io/npm/v/openkvk.svg?maxAge=3600)](https://github.com/fvdm/nodejs-openkvk/blob/master/CHANGELOG.md)
