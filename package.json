@@ -19,7 +19,7 @@
     "overheid.io": "^1.0.0"
   },
   "devDependencies": {
-    "dotest": "^2.3.0"
+    "dotest": "^2.6.2"
   },
   "engines": {
     "node": ">=4.0.0"
